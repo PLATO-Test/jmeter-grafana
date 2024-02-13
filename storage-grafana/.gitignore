@@ -2,3 +2,5 @@
 *
 # Except this file
 !.gitignore
+# Except this file
+!custom.ini

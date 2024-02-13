@@ -12,12 +12,6 @@ services:
     networks:
       - platojmeternet
     restart: unless-stopped
-#    healthcheck:
-#      test: "curl --fail http://localhost:8086/ping || exit 1"
-#      interval: 1s
-#      timeout: 1s
-#      retries: 10
-#      start_period: 1s
 
   grafana:
     image: grafana/grafana-enterprise:latest
@@ -36,15 +30,6 @@ services:
     networks:
       - platojmeternet
     restart: unless-stopped
-#    depends_on:
-#      influxdb:
-#        condition: service_healthy
-#    healthcheck:
-#      test: "curl --fail http://localhost:3000 || exit 1"
-#      interval: 1s
-#      timeout: 1s
-#      retries: 10
-#      start_period: 1s
 
   renderer:
     image: grafana/grafana-image-renderer:latest
@@ -67,11 +52,6 @@ services:
     entrypoint: tail -f /dev/null      
     networks:
       - platojmeternet
-#    depends_on:
-#      influxdb:
-#        condition: service_healthy
-#      grafana:
-#        condition: service_healthy
 
 networks:
   platojmeternet:
