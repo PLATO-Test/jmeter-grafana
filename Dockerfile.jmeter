@@ -1,0 +1,30 @@
+FROM alpine:3
+
+ARG JMETER_VERSION="5.6.2"
+ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
+ENV	JMETER_BIN ${JMETER_HOME}/bin
+ENV	JMETER_DOWNLOAD_URL https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
+ENV PLUGIN_MANAGER_URL https://jmeter-plugins.org/get
+
+RUN    apk update \
+	&& apk upgrade \
+	&& apk add ca-certificates \
+	&& update-ca-certificates \
+	&& apk add --update openjdk8-jre vim curl unzip bash \
+	&& rm -rf /var/cache/apk/* \
+	&& mkdir -p /tmp/downloads  \
+	&& curl -L --silent ${JMETER_DOWNLOAD_URL} >  /tmp/downloads/apache-jmeter-${JMETER_VERSION}.tgz  \
+	&& mkdir -p /opt  \
+	&& tar -xzf /tmp/downloads/apache-jmeter-${JMETER_VERSION}.tgz -C /opt  \
+	&& curl -L --silent ${PLUGIN_MANAGER_URL} > /opt/apache-jmeter-${JMETER_VERSION}/lib/ext/plugins-manager.jar \
+	&& java -cp /opt/apache-jmeter-${JMETER_VERSION}/lib/ext/plugins-manager.jar org.jmeterplugins.repository.PluginManagerCMDInstaller \
+	&& curl -L http://search.maven.org/remotecontent?filepath=kg/apc/cmdrunner/2.3/cmdrunner-2.3.jar > /opt/apache-jmeter-${JMETER_VERSION}/lib/cmdrunner-2.3.jar \
+	&& /opt/apache-jmeter-${JMETER_VERSION}/bin/PluginsManagerCMD.sh install jpgc-functions \
+	#I would prefer this format over unix time, but, cannot get grafana to parse the milliseconds in the transformation from string
+#	&& echo 'jmeter.save.saveservice.timestamp_format=yyyy/MM/dd HH:mm:ss.SSS' >> /opt/apache-jmeter-${JMETER_VERSION}/bin/jmeter.properties \
+    && echo 'jmeter.save.saveservice.autoflush=true' >> /opt/apache-jmeter-${JMETER_VERSION}/bin/jmeter.properties \
+	&& rm -rf /tmp/downloads
+
+ENV PATH $PATH:$JMETER_BIN
+
+WORKDIR	${JMETER_HOME}

@@ -1,0 +1,1 @@
+{"name":"CSV-%%DATASOURCE%%","type":"marcusolsson-csv-datasource","typeName":"CSV","access":"proxy","url":"/var/lib/grafana/scatterplot_%%DATASOURCE%%.csv","isDefault":false,"jsonData":{"storage":"local"}}

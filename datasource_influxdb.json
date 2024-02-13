@@ -1,0 +1,1 @@
+{"name":"InfluxDB-%%DATASOURCE%%","type":"influxdb","typeName":"InfluxDB","access":"proxy","url":"http://influxdb:8086","user":"admin","database":"","basicAuth":false,"isDefault":false,"jsonData":{"dbName":"%%DATASOURCE%%","httpMode":"GET","maxSeries":1000000,"timeInterval":"5s"},"secureJsonData":{"password":"admin123"},"readOnly":false}
