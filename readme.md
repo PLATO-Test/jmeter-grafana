@@ -23,8 +23,11 @@ docker compose up -d --wait
 #run jmeter with the example jmx 
 ./run.sh example
 ```
-the standard output from the `run.sh` command will print a URL.
-navigate to this URL in a browser and enjoy the dashboard!
+* the standard output from the `run.sh` command will print a URL, copy it to clipboard
+* navigate to this URL in a browser
+* login to grafana with user `admin` password `admin`
+* skip the step to update the admin password by clicking `Skip`
+* enjoy the dashboard!
 
 ## Run your own test
 
