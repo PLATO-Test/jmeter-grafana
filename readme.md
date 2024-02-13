@@ -15,7 +15,7 @@ This repository uses a docker compose file to orchestrate the starting of `influ
 #build a jmeter image with the required configuration
 docker build . -f ./Dockerfile.jmeter -t jmeter:local
 #start the stack
-docker compose up -d --wait --pull always
+docker compose up -d --wait
 #create the admin user within influxdb
 ./init_influxdb.sh
 #create an API token within grafana
@@ -45,6 +45,6 @@ docker-compose down
 The containers can be stopped when not in use. The influxdb and grafana state is maintained in the volume mounts [storage-influx](/storage-influx/) and [storage-grafana](/storage-grafana/), so that test results will not be lost when the stack is stopped.  
 To restart the stack another day and run another test, the init steps are skipped:
 ```sh
-docker compose up -d --wait --pull always
+docker compose up -d --wait
 ./run.sh example
 ```
