@@ -1,7 +1,11 @@
 # Introduction
 
-Welcome to the jmeter-grafana repository! 
-This repository uses a docker compose file to orchestrate the starting of `influxdb`, `grafana`, `grafana-renderer` and `jmeter` containers.
+Welcome to the jmeter-grafana repository!
+
+This repository provides a grafana dashboard for real time monitoring of a jmeter test.
+
+![dashboard1](./dashboard1.png)
+![dashboard2](./dashboard2.png)
 
 ## Pre-requisites
 
@@ -26,8 +30,9 @@ docker compose up -d --wait
 * the standard output from the `run.sh` command will print a URL, copy it to clipboard
 * navigate to this URL in a browser
 * login to grafana with user `admin` password `admin`
-* skip the step to update the admin password by clicking `Skip`
-* enjoy the dashboard!
+* skip the step to update the admin password by clicking `Skip`, and enjoy the dashboard!
+* a .png image of the scatterplot widget is saved to disk, can be uploaded as build artifact
+* statistics `total transactions`, `error rate`, `p(99)`, and `mean duration` are exposed as shell variables for automated test result determination wtihin a ci/cd pipeline
 
 ## Run your own test
 
