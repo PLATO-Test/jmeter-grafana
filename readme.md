@@ -33,7 +33,7 @@ docker compose up -d --wait
 * skip the step to update the admin password by clicking `Skip`, and enjoy the dashboard!
 * html reports written to the [report subfolder](/report/)
 * a .png image of the scatterplot widget is saved to disk, can be uploaded as build artifact
-* statistics `total transactions`, `error rate`, `p(99)`, and `mean duration` are exposed as shell variables for automated test result determination wtihin a ci/cd pipeline
+* statistics `total transactions`, `error rate`, `p(99)`, and `mean duration` are exposed as shell variables for automated test result determination within a CI/CD pipeline
 
 ## Run your own test
 
